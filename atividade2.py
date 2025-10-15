@@ -1,0 +1,25 @@
+import pyautogui
+import time
+
+pyautogui.hotkey('win', 'd')
+pyautogui.hotkey('ctrl', 'shift','n')
+pyautogui.write('Pasta')
+time.sleep(0.4)
+pyautogui.press('enter',3)
+time.sleep(0.4)
+pyautogui.rightClick(500,250,duration=0.4)
+time.sleep(0.4)
+pyautogui.press('down',13)
+pyautogui.press('enter')
+time.sleep(0.4)
+pyautogui.press('down',13)
+pyautogui.press('enter')
+time.sleep(0.4)
+pyautogui.write('Acabei')
+pyautogui.press('enter',2)
+time.sleep(0.4)
+pyautogui.write('Acabei')
+time.sleep(0.4)
+pyautogui.hotkey('ctrl','s')
+pyautogui.hotkey('alt','f4')
+
