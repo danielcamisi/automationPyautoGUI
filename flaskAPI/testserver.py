@@ -25,7 +25,7 @@ def data_search():
 @app.route('/data/search/complex')
 def complexData_search():
     process_emulate()
-    return jsonify({"result": [{"id":i,"value": random.randint(1,1000)} for i in range(125)]})
+    return jsonify({"result": [{"id":i,"value": random.randint(1,1000)} for i in range(5)]})
 
 @app.route('/process', methods=['POST'])
 def process():

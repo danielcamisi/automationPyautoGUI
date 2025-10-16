@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Personagens de Rick and Morty</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .character img {
+        max-width: 200px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Personagens de Rick and Morty</h1>
+    <select id="characterSelect">
+      <option value="">Selecione um personagem</option>
+    </select>
+    <div id="characterDetails"></div>
+
+    <script>
+      fetch("/characters")
+        .then((res) => res.json())
+        .then((data) => {
+          const select = document.getElementById("characterSelect");
+          data.results.forEach(
+            (c) =>
+              (select.innerHTML += `<option value="${c.id}">${c.name}</option>`)
+          );
+
+          select.onchange = () => {
+            if (!select.value) {
+              document.getElementById("characterDetails").innerHTML = "";
+              return;
+            }
+            fetch(`https://rickandmortyapi.com/api/character/${select.value}`)
+              .then((res) => res.json())
+              .then((c) => {
+                document.getElementById("characterDetails").innerHTML = `
+            <h2>${c.name}</h2>
+            <img src="${c.image}" alt="${c.name}">
+            <p>Status: ${c.status}</p>
+            <p>Espécie: ${c.species}</p>
+            <p>Origem: ${c.origin.name}</p>
+          `;
+              });
+          };
+        });
+    </script>
+  </body>
+</html>
